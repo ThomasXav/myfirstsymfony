@@ -93,6 +93,16 @@ class TelephoneController extends Controller
         "chercher" => $chercher,
       ));
     }
+
+    public function requestqb()
+    {
+      $repo = $this->getDoctrine()
+          ->getRepository(Telephone::class);
+      $tels = $repo->findBiggerSizeThan(5.5);
+      return $this->render('telephonerequest.html.twig', array(
+        "tels" => $tels,
+      ));
+    }
 }
 
 ?>
