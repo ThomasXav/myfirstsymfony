@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TelephoneRepository")
  */
 class Telephone
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -17,17 +20,25 @@ class Telephone
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $marque;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Range(
+     *      min = 3,
+     *      max = 7,
+     *      minMessage = "You must be at least {{ limit }}cm tall to enter",
+     *      maxMessage = "You cannot be taller than {{ limit }}cm to enter"
+     * )
      */
     private $taille;
 
