@@ -88,7 +88,7 @@ class TelephoneRepository extends ServiceEntityRepository
     if ($value2 == 0) {
     $qb->andWhere('t.marque = :cherche')
         ->setParameter('cherche', $value);
-      } else if ($value   == 0) {
+      } else if ($value == 0) {
     $qb->andWhere('t.type = :cherche2')
         ->setParameter('cherche2', $value2);
       }

@@ -129,7 +129,9 @@ class TelephoneController extends Controller
     // Nous créons un formulaire A PARTIR DE $tel
     // ce qui permettra à Symfony d'hydrater (remplir) cette entité une fois que le formulaire sera validé...
     // Nous précisons ici que nous voulons utiliser `TelephoneType` et hydrater $tel
-    $form = $this->createForm(TelephoneType::class, $tel);
+    $form = $this->createForm(TelephoneType::class, $tel, [
+      'action_name' => 'new'
+    ]);
 
         $form->handleRequest($request);
 
@@ -165,7 +167,9 @@ class TelephoneController extends Controller
     // ce qui permettra à Symfony d'hydrater (remplir) cette entité une fois que le formulaire sera validé...
     // Nous précisons ici que nous voulons utiliser `TelephoneType` et hydrater $tel
 
-    $form = $this->createForm(TelephoneType::class, $tel);
+    $form = $this->createForm(TelephoneType::class, $tel, [
+      'action_name' => 'modify'
+    ]);
 
     $form->handleRequest($request);
 
