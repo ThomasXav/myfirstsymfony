@@ -61,21 +61,49 @@ class TelephoneRepository extends ServiceEntityRepository
 
     public function findBiggerSizeThanQb($value)
     {
+        // on travaille sur l'entité Telephone (le Repo est associé à l'entité Telephone)
+        // 't' est l'alias que nous pouvons utiliser par la suite.
+        $qb = $this->createQueryBuilder('t');
+
+        // ajout d'une clause 'Where'
+        // FROM et SELECT ne sont pas indispensable vu que le qb a été construit en lien avec l'entité Telephone
+        $qb->andWhere('t.taille >= :size')
+            ->setParameter('size', $value);
+
+        // récupération de la requête
+        $query = $qb->getQuery();
+
+        // exécution et renvoie du résultat
+        return $query->execute();
+    }
+
+    public function findAdvanced($value, $value2)
+{
     // on travaille sur l'entité Telephone (le Repo est associé à l'entité Telephone)
     // 't' est l'alias que nous pouvons utiliser par la suite.
     $qb = $this->createQueryBuilder('t');
 
     // ajout d'une clause 'Where'
     // FROM et SELECT ne sont pas indispensable vu que le qb a été construit en lien avec l'entité Telephone
-    $qb->andWhere('t.taille >= :size')
-        ->setParameter('size', $value);
-
+    if ($value2 == 0) {
+    $qb->andWhere('t.marque = :cherche')
+        ->setParameter('cherche', $value);
+      } else if ($value   == 0) {
+    $qb->andWhere('t.type = :cherche2')
+        ->setParameter('cherche2', $value2);
+      }
+      else {
+        $qb->andWhere('t.marque = :cherche')
+            ->setParameter('cherche', $value);
+        $qb->andWhere('t.type = :cherche2')
+            ->setParameter('cherche2', $value2);
+      }
     // récupération de la requête
     $query = $qb->getQuery();
 
     // exécution et renvoie du résultat
     return $query->execute();
-    }
+}
 
     // /**
     //  * @return Telephone[] Returns an array of Telephone objects

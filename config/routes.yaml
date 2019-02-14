@@ -41,3 +41,18 @@ telephone_search:
     path: /telephone/search/{chercher}
     controller: App\Controller\TelephoneController::search
     requirements:
+
+telephone_requestqb:
+    path: /telephone/requestqb
+    controller: App\Controller\TelephoneController::requestqb
+    requirements:
+
+telephone_advancedsearch:
+    path: /telephone/advancedsearch/{marque}/{type}
+    controller: App\Controller\TelephoneController::advancedsearch
+    requirements:
+
+telephone_new:
+    path: /telephone/new
+    controller: App\Controller\TelephoneController::new
+    requirements:

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Liste des marques enregistré correspondant à {{ marque }} {{ type }}
+<ul>
+  {% for tels in tels %}
+      <li>ID : {{ tels.id }} /
+      Marque : {{ tels.marque }} /
+      Type : {{ tels.type }} /
+      Taille {{ tels.taille }} pouces</li>
+  {% endfor %}
+</ul>
+{% endblock %}
