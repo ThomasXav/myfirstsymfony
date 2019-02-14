@@ -156,7 +156,7 @@ class TelephoneController extends Controller
     ));
     }
 
-    public function modify(Request $request)
+    public function modify(Request $request, $id)
     {
     // Nous créons une entité Telephone
     $tel = $this->getDoctrine()->getRepository(Telephone::class)->find($id);
@@ -164,11 +164,8 @@ class TelephoneController extends Controller
     // Nous créons un formulaire A PARTIR DE $tel
     // ce qui permettra à Symfony d'hydrater (remplir) cette entité une fois que le formulaire sera validé...
     // Nous précisons ici que nous voulons utiliser `TelephoneType` et hydrater $tel
-    $form = $this->createForm(TelephoneType::class, $tel);
 
-    $tel->setMarque($marque);
-    $tel->setType($type);
-    $tel->setTaille($taille);
+    $form = $this->createForm(TelephoneType::class, $tel);
 
     $form->handleRequest($request);
 
@@ -192,6 +189,7 @@ class TelephoneController extends Controller
     // renvoie classique à Twig...
     return $this->render('modify.html.twig', array(
         // en renvoyant l'objet qui va bien à partir de la méthode createView
+        "id" => $id,
         'form' => $form->createView(),
     ));
     }

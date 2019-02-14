@@ -15,9 +15,9 @@ telephone_add:
     requirements:
         marque: '[A-Za-z]+'
 
-telephone_modify:
-    path: /telephone/modify/{id}/{marque}/{type}/{taille}
-    controller: App\Controller\TelephoneController::modify
+telephone_modifiy:
+    path: /telephone/modifiy/{id}/{marque}/{type}/{taille}
+    controller: App\Controller\TelephoneController::modifiy
     requirements:
         marque: '[A-Za-z]+'
 
@@ -55,4 +55,9 @@ telephone_advancedsearch:
 telephone_new:
     path: /telephone/new
     controller: App\Controller\TelephoneController::new
+    requirements:
+
+telephone_modify:
+    path: /telephone/modify/{id}
+    controller: App\Controller\TelephoneController::modify
     requirements:
